@@ -58,5 +58,34 @@ if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
     setInterval(update, 1000);
   }
 }
+const hero = document.querySelector(".hero");
+
+if (hero) {
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 16;
+        const y = (e.clientY / window.innerHeight - 0.5) * 10;
+        hero.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
+
+    document.addEventListener("mouseleave", () => {
+        hero.style.transform = "translate3d(0,0,0)";
+    });
+}
+
+
+/* ===================== REVEAL ANIMATION ON SCROLL ===================== */
+
+window.addEventListener("load", () => {
+    const reveals = document.querySelectorAll(".reveal");
+    reveals.forEach((el, i) => {
+        if (!el.style.animationDelay) {
+            el.style.animationDelay = `${i * 0.06}s`;
+        }
+        el.getBoundingClientRect(); // trigger reflow
+        el.classList.add("visible");
+    });
+});
+
+
 
 
